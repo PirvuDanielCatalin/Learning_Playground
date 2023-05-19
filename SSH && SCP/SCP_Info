@@ -1,0 +1,12 @@
+======================================================================
+Pe masina sursa:
+ - Generez set de chei SSH pt userul $T_USER
+ - Ma asigur ca drepturile pe fisierul tranferat sunt ale userului $T_USER
+======================================================================
+Pe masina destinatie:
+ - Pun cheia publica in authorized_keys
+ - Ma asigur ca drepturile pe folderul destinatie sunt ale userului $T_USER
+======================================================================
+Comanda
+scp $SOURCE_PATH_FILE $T_USER@$DESTINATION_IP:$DESTINATION_PATH_FILE_OR_FOLDER
+======================================================================

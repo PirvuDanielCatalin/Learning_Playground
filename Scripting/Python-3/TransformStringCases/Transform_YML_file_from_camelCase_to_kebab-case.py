@@ -7,10 +7,10 @@ import sys
 
 # VARS
 script_path = os.path.dirname(sys.argv[0])
-file_before = script_path + "/MAPS_Config_Before.yml"
-file_after = script_path + "/MAPS_Config_After.yml"
+file_before = script_path + "/Before.yml"
+file_after = script_path + "/After.yml"
 exceptions = {
-    'useIBMCipherMappings': 'use-IBM-cipher-mappings'
+    'useSOMETHINGNew': 'use-SOMETHING-new'
 }
 
 
