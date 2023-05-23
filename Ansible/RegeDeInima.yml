@@ -1,0 +1,21 @@
+---
+- name: Combined name of vars
+  hosts: comp2
+  gather_facts: false
+  vars:
+    varib1: '111'
+    varib2: '222'
+    ceva_1: "AAA"
+    ceva_2: "BBB"
+  tasks:
+    - name: Debug
+      debug:
+        var: "{{ 'ceva_' + ( varib1 | string ) }}"
+
+    - name: Debug
+      debug:
+        var: "{{ 'ceva_' + ( varib2 | string ) }}"
+
+    - name: Var Cond
+      debug:
+        msg: "{{ '1' if 'comp2_1' is in group_names else '2' if 'comp2_2' is in group_names else '3' }}"

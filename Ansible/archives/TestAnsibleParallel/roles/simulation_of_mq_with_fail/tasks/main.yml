@@ -1,0 +1,6 @@
+---
+- name: MQ Fail
+  shell:
+    cmd: |
+      sleep 3
+      /bin/false

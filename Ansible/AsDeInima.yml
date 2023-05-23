@@ -1,0 +1,48 @@
+---
+- name: Task din interior singular
+  hosts: "{{ hosts | default('aws') }}"     # <== Putem specifica hostuiele in afara fisierului asta
+  # hosts: aws:&{{ hosts }}                 # <== Preia doar primul din lista
+  gather_facts: false
+  tasks:
+    - name: PrintOutput
+      debug:
+        msg: "Task singular"
+
+- name: Task din interior debug variabil
+  hosts: "{{ hosts | default('aws') }}"     # <== Putem specifica hostuiele in afara fisierului asta
+  # hosts: aws:&{{ hosts }}                 # <== Preia doar primul din lista
+  gather_facts: false
+  tasks:
+    - name: DebugExternalVariable
+      include_tasks: tasks/DebugExternalVariable.yml
+
+# Nu merge nicio forma
+# - name: Task din interior loop
+  # hosts: "{{ hosts :& item.host_final }}"
+  # hosts: "{{ hosts :& item.host_final }}"
+  # hosts: "{{ item.host_final }}"
+  # gather_facts: false
+  # tasks:
+  #   - name: PrintOutput
+  #     debug:
+  #       msg: "Task loop {{ item.variabila }}"
+  # with_items:
+  #   - { host_final: node1, variabila: node1 }
+  #   - { host_final: node2, variabila: node2 }
+  #   - { host_final: node3, variabila: node3 }
+  #   - { host_final: node4, variabila: node4 }
+
+# Nici asta nu merge
+# - name: Task din interior loop 2
+#   hosts: "{{ item }}"
+#   gather_facts: false
+#   tasks:
+#     - name: PrintOutput
+#       include_tasks: tasks/PrintOutput.yml
+#   with_items:
+#     - node1
+#     - node2
+    
+# !!! Nu se pot adauga loops/with_items la playbook-uri
+# Asta inseamna ca avem nevoie de taskuri separate pt host-uri separate
+

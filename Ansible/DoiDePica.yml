@@ -1,0 +1,12 @@
+---
+- name: Playing with Ansible
+  hosts: aws
+  gather_facts: false
+  tasks:
+    - name: Debug
+      debug:
+        msg: "{{ inventory_hostname }}"
+
+    - name: Debug
+      debug:
+        msg: "{{ variabila_conditionata }}"

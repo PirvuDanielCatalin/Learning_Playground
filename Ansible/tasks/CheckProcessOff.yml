@@ -1,0 +1,21 @@
+---
+- name: Check process
+  shell: |
+    ps -ef | grep -v grep | grep Loop | awk '{print $2}'
+  register: result
+  until: result.stdout == ""
+  retries: 30
+  delay: 1
+
+- name: Debug
+  debug:
+    var: result
+
+- name: Print
+  shell: |
+    echo "Aici doar dupa ce procesul e oprit complet"
+  register: res
+
+- name: Debug
+  debug:
+    var: res

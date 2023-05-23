@@ -1,0 +1,9 @@
+---
+- name: Add line in file
+  lineinfile:
+    path: "{{ path }}"
+    line: "STATUS: {{ something }}"
+    create: yes
+  var:
+    path: "???"
+    something: "???"

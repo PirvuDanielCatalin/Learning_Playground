@@ -1,0 +1,29 @@
+---
+conns_list:
+- id: "000000090A101"
+  message_format: "iso20022_tch"
+  message_set_version: "2"
+  short_id: "090A101"
+  owning_entity_id: "000000090A101"
+  site_1:
+    mq_name: 000000090A101_MQ1
+    mq_host: "123"
+    mq_port: 1684
+  site_2:
+    mq_name: 000000090A101_MQ2
+    mq_host: "124"
+    mq_port: 1684
+
+- id: "000000089A101"
+  message_format: "iso20022_tch"
+  message_set_version: "2"
+  short_id: "089A101"
+  owning_entity_id: "000000089A101"
+  site_1:
+    mq_name: 000000089A101_MQ1
+    mq_host: "213"
+    mq_port: 1682
+  site_2:
+    mq_name: 000000089A101_MQ2
+    mq_host: "214"
+    mq_port: 1682

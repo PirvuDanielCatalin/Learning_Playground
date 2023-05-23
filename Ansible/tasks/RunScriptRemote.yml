@@ -1,0 +1,4 @@
+---
+- name: Run script remote
+  script: ./files/EchoHostname.sh
+  register: result

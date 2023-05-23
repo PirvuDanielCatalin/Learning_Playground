@@ -1,0 +1,22 @@
+%% Test routing data
+{routing_data,
+  {"1",                                                    %% Version number for this routing data
+                                                           %% List of routing numbers
+   [{% for id, details in participants_list_filtered.items() %}
+    {% for routing_id, r_details in details.routing_numbers.items() %}
+
+    {"{{ routing_id }}",                                         %% Routing number
+     "{{ id }}",                                                 %% Participant
+     "{{ details.default_connection }}",                         %% Connection Id
+      {{ r_details.tokenized_flag | default('false') }},          %% Tokenisation Flag
+      {{ r_details.tokenise_sender | default('false') }},            %% Tokenisation Sender
+      {{ r_details.tokenise_receiver | default('false') }},          %% Tokenisation Receiver
+      {{ r_details.accept_token_notification | default('false') }},  %% Accept Token Notification
+      {{ details.workflow_group | default(1) }},                 %% Workflow Group
+      {{ details.messaging_group | default(1) }}                 %% Messaging Group
+    }{{ ',' if not loop.last else '' }}{% endfor %}{{ ',' if not loop.last and details.routing_numbers else '' }}{% endfor %}
+
+   ]
+  }
+}.
+

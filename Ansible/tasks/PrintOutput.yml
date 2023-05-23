@@ -1,0 +1,10 @@
+---
+- name: Echo
+  shell:
+    cmd: |
+      echo "Something"
+  register: result
+
+- name: Debug
+  debug:
+    var: result

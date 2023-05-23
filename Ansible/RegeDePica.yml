@@ -1,0 +1,63 @@
+---
+- name: Read variables
+  hosts: all
+  gather_facts: false
+  vars:
+    base_dir: /local/AnsiblePlay
+    file_path: /local/vars/extra-vars.yml
+  tasks:
+    - name: ReadYMLFile
+      include_tasks: tasks/ReadYMLFile.yml
+
+- name: Playing with Ansible
+  hosts: node1
+  gather_facts: false
+  tasks:
+    - name: Debug
+      debug:
+        var: ips_comp_rpm
+
+    - name: Ensure directories exist
+      file:
+        path: "{{ rpm_dir }}"
+        state: directory
+
+    - name: Copy RPM to host
+      copy:
+        src: '{{ rpm_source }}/{{ ips_maps_rpm }}'
+        dest: '{{ rpm_dir }}/{{ ips_maps_rpm }}'
+
+    - name: List packages
+      shell:
+        cmd: |
+          rpm -qa | grep message-acquisition-tch
+      register: result
+
+    - name: Debug
+      debug:
+        var: result
+
+    # - name: List packages
+    #   yum:
+    #     list: message-acquisition-tch
+    #   register: result
+
+    # - name: Debug
+    #   debug:
+    #     var: result
+
+    - name: RPM install
+      yum:
+        name: '{{ rpm_dir }}/{{ ips_maps_rpm }}'
+        state: present
+        disable_gpg_check: yes
+
+    - name: List packages
+      shell:
+        cmd: |
+          rpm -qa | grep message-acquisition-tch
+      register: result
+
+    - name: Debug
+      debug:
+        var: result

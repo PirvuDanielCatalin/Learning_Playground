@@ -1,0 +1,53 @@
+-------------
+- IRE-2662 -
+-------------
+
+So I started making successful playbooks trying to simulate installation of DB and MQ in parallel.
+You can find the learning/testing progress on TestAnsibleParallel directory.
+I make some scripts to extract the time of execution in both strategies.
+For the linear strategy I got an average of 41 seconds.
+For the free strategy I got an average of 32 seconds.
+
+So we can clearly say that the free strategy is better, in fact is exactly what we needed in order to make those tasks in parallel.
+The problem with this is that the hosts are no more in relation because the any_error_fatal statement does not work.
+In other words, every host is one his own and if it fails it is the only one knowing.
+
+So I had to implement an error handling method.
+A)
+The first option was to add the rescue section after the block.
+That does not help because the hosts still don't know of each other so even if the failed host gets to rescue section it will be "alone" there.
+
+B)
+The other option would be to implement a fail task conditioned by the difference between all and active nodes (The idea from Lajos).
+I had that implemented as a role in 'check-for-errors'.
+https://ie-github.vocalink.co.uk/vocalink/ips-config-tch/blob/feature/IRE-2662/src/templates/ansible/roles/check-for-errors/tasks/main.yml
+
+I implemented the option B in the actual deployment. You can see the PR here:
+https://ie-github.vocalink.co.uk/vocalink/ips-config-tch/pull/1330
+
+I run a deployment with this where I've put all the things together:
+- free strategy
+- any_error_fatal: true (even if it doesn't matter)
+- the block with conditioned roles
+- couple of check roles
+- a fail task at the end of DB install to see what actually happens
+
+The run can be found here:
+https://ie-tch-devops-jenkins.vocalink.co.uk/job/TCH/job/aws-test-env-collapsed/job/TCH-aws-test-env-collapsed-deploy-full-2.11.x/3127/console
+
+You can see that the deployment is failed due to the intentional mistake.
+The problem is that it fails at the end of Ansible part, not at the exact moment of happening, so we can lose a lot of time doing an already broken environment.
+So any_error_fatal clearly does not take effect and neither does those check methods.
+
+On top of that I made some successful deployments:
+https://ie-tch-devops-jenkins.vocalink.co.uk/job/TCH/job/aws-test-env-collapsed/job/TCH-aws-test-env-collapsed-deploy-full-2.11.x/3116/
+https://ie-tch-devops-jenkins.vocalink.co.uk/job/TCH/job/aws-test-env-collapsed/job/TCH-aws-test-env-collapsed-deploy-full-2.11.x/3115/
+https://ie-tch-devops-jenkins.vocalink.co.uk/job/TCH/job/aws-test-env-collapsed/job/TCH-aws-test-env-collapsed-deploy-full-2.11.x/3114/
+https://ie-tch-devops-jenkins.vocalink.co.uk/job/TCH/job/aws-test-env-collapsed/job/TCH-aws-test-env-collapsed-deploy-full-2.11.x/3101/
+
+Those do not have any checks or methods for error handling and I made them to see the time efficiency and the result was not the one I expected.
+I just managed to reduce the time with just 2-3 minutes.
+
+So what should be the conclusion to this task?
+
+Magnus White Stuart Mottram Petru Fatu

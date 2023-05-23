@@ -1,0 +1,9 @@
+---
+- name: Print group names
+  hosts: all
+  strategy: linear
+  gather_facts: false
+  tasks:
+    - name: Group names
+      debug: 
+        var: group_names

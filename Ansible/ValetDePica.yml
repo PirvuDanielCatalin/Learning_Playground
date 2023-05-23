@@ -1,0 +1,9 @@
+---
+- name: Check variable exists and it's not empty
+  hosts: pereche_1
+  gather_facts: false
+  tasks:
+    - name: Debug
+      debug:
+        msg: "{{ var_list if (var_list is defined and var_list | length != 0) else var_list_v2 }}"
+        

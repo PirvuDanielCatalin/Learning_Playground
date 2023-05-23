@@ -1,0 +1,12 @@
+---
+- name: Debug
+  debug:
+    var: base_dir
+
+- name: Include variables from all YML, YAML, JSON files within the folder
+  include_vars:
+    dir: "{{ base_dir }}/vars"
+
+- name: Debug
+  debug:
+    var: app_rpm_version

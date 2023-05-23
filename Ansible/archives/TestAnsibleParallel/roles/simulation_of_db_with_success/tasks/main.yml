@@ -1,0 +1,5 @@
+---
+- name: DB Success
+  shell:
+    cmd: |
+      sleep 20

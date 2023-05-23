@@ -1,0 +1,9 @@
+---
+- name: Print group names
+  hosts: simulation_of_mq_nodes
+  strategy: linear
+  gather_facts: false
+  tasks:
+    - name: Test variable
+      debug: 
+        var: variable_for_test

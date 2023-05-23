@@ -1,0 +1,4 @@
+---
+- name: Debug
+  debug:
+    var: variabila_externa

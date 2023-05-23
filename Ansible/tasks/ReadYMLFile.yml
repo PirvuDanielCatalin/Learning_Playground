@@ -1,0 +1,8 @@
+---
+- name: Debug
+  debug:
+    var: file_path
+
+- name: Include file of variables
+  include_vars:
+    file: "{{ file_path }}"

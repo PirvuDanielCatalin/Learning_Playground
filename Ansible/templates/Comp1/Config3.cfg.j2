@@ -1,0 +1,20 @@
+%% List of participants
+{participants,
+  [{% for id, details in participants_list_filtered.items() %}
+   {% set all_cons = [details.default_connection] + details.extra_connections %}
+   {"{{ id }}",                                                                     %% Id
+    "{{ details.name | default(details.id) }}",                                     %% Participant name
+    "{{ details.default_connection }}",                                             %% Default connection
+    ["{{ all_cons | join(", ") }}"],                                                %% Allowed connections
+    [{{ details.send_services | default('') }}],                                    %% Send services
+    [{{ details.receive_services | default('') }}],                                 %% Receive services
+    {{ details.cap_high | default('') }},                                           %% Cap High
+    {{ details.cap_low | default('') }},                                            %% Cap Low
+    {{ details.suspension_status | default('available') }},                         %% suspension status
+    "{{ details.effective_date | default('') }}",                                   %% Effective Date
+    10000,                                                                          %% Prefunded Minimum
+    {{ details.card_number | default('undefined') }},                               %% Card Number
+    {{ details.card_pin | default('undefined') }}                                   %% Card Pin
+   }{{ ',' if not loop.last else '' }}
+{% endfor %}]
+}.

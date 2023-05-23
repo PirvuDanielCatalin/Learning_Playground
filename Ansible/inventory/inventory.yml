@@ -1,0 +1,424 @@
+---
+all:
+  hosts:
+    # Local
+    local:
+      ansible_host: 127.0.0.1
+      ansible_connection: local
+  children:
+    #AWS
+    aws:
+      hosts:
+        node1:
+          ansible_host: "{{ lookup('env', 'AWS_NODE1') }}"
+          ansible_user: root
+          ansible_ssh_private_key_file: "{{ lookup('env', 'HOME') + '/.ssh/id_rsa' }}"
+          ansible_ssh_extra_args: "-o StrictHostKeyChecking=no"
+        node2:
+          ansible_host: "{{ lookup('env', 'AWS_NODE2') }}"
+          ansible_user: root
+          ansible_ssh_private_key_file: "{{ lookup('env','HOME') + '/.ssh/id_rsa' }}"
+          ansible_ssh_extra_args: "-o StrictHostKeyChecking=no"
+        node3:
+          ansible_host: "{{ lookup('env', 'AWS_NODE3') }}"
+          ansible_user: root
+          ansible_ssh_private_key_file: "{{ lookup('env', 'HOME') + '/.ssh/id_rsa' }}"
+          ansible_ssh_extra_args: "-o StrictHostKeyChecking=no"
+        node4:
+          ansible_host: "{{ lookup('env', 'AWS_NODE4') }}"
+          ansible_user: root
+          ansible_ssh_private_key_file: "{{ lookup('env', 'HOME') + '/.ssh/id_rsa' }}"
+          ansible_ssh_extra_args: "-o StrictHostKeyChecking=no"
+        node_db:
+          ansible_host: "{{ lookup('env', 'AWS_DB') }}"
+          ansible_user: root
+          ansible_ssh_private_key_file: "{{ lookup('env', 'HOME') + '/.ssh/id_rsa' }}"
+          ansible_ssh_extra_args: "-o StrictHostKeyChecking=no"
+        node_sim:
+          ansible_host: "{{ lookup('env', 'AWS_SIM') }}"
+          ansible_user: root
+          ansible_ssh_private_key_file: "{{ lookup('env', 'HOME') + '/.ssh/id_rsa' }}"
+          ansible_ssh_extra_args: "-o StrictHostKeyChecking=no"
+    pereche_1:
+      hosts:
+        node1:
+        node2:
+    pereche_2:
+      hosts:
+        node3:
+        node4:
+    pereche_3:
+      hosts:
+        node_db:
+        node_sim:
+    pereche_4:
+    #CT5
+    ips:
+      children:
+        files_service:
+          children:
+            service:
+              children:
+                comp2:
+                  children:
+                    comp2_1:
+                      hosts:
+                        ct5bo1:
+                          ansible_host: 10.117.0.23
+                          ansible_user: skytap
+                          ansible_password: ChangeMe!
+                    comp2_2:
+                      hosts:
+                        ct5bo2:
+                          ansible_host: 10.117.0.11
+                          ansible_user: skytap
+                          ansible_password: ChangeMe!
+                    comp2_3:
+                      hosts:
+                        ct5bo3:
+                          ansible_host: 10.117.0.12
+                          ansible_user: skytap
+                          ansible_password: ChangeMe!
+                    comp2_4:
+                      hosts:
+                        ct5bo4:
+                          ansible_host: 10.117.0.13
+                          ansible_user: skytap
+                          ansible_password: ChangeMe!
+                bankmq:
+                  children:
+                    bankmq_1:
+                      hosts:
+                        ct5bkmq1:
+                          ansible_host: 10.117.0.6
+                          ansible_user: skytap
+                          ansible_password: ChangeMe!
+                    bankmq_2:
+                      hosts:
+                        ct5bkmq2:
+                          ansible_host: 10.117.0.25
+                          ansible_user: skytap
+                          ansible_password: ChangeMe!
+                borabbitmq:
+                  children:
+                    borabbitmq_1:
+                      hosts:
+                        ct5bo1:
+                          ansible_host: 10.117.0.23
+                          ansible_user: skytap
+                          ansible_password: ChangeMe!
+                    borabbitmq_2:
+                      hosts:
+                        ct5bo2:
+                          ansible_host: 10.117.0.11
+                          ansible_user: skytap
+                          ansible_password: ChangeMe!
+                    borabbitmq_3:
+                      hosts:
+                        ct5bo3:
+                          ansible_host: 10.117.0.12
+                          ansible_user: skytap
+                          ansible_password: ChangeMe!
+                    borabbitmq_4:
+                      hosts:
+                        ct5bo4:
+                          ansible_host: 10.117.0.13
+                          ansible_user: skytap
+                          ansible_password: ChangeMe!
+                dsp:
+                  children:
+                    dsp_1:
+                      hosts:
+                        ct5dsp1_dsp:
+                          ansible_host: 10.117.0.32
+                          ansible_user: skytap
+                          ansible_password: ChangeMe!
+                    dsp_2:
+                      hosts:
+                        ct5dsp2_dsp:
+                          ansible_host: 10.117.0.33
+                          ansible_user: skytap
+                          ansible_password: ChangeMe!
+                    dsp_3:
+                      hosts:
+                        ct5dsp3_dsp:
+                          ansible_host: 10.117.0.22
+                          ansible_user: skytap
+                          ansible_password: ChangeMe!
+                    dsp_4:
+                      hosts:
+                        ct5dsp4_dsp:
+                          ansible_host: 10.117.0.34
+                          ansible_user: skytap
+                          ansible_password: ChangeMe!
+                    dsp_5:
+                      hosts:
+                        ct5msim1:
+                    dsp_6:
+                      hosts:
+                        ct5msim2:
+                ldap:
+                  children:
+                    ldap_1:
+                      hosts:
+                        ct5wndm1:
+                          ansible_host: 10.117.0.3
+                          ansible_user: skytap
+                          ansible_password: ChangeMe!
+                    ldap_2:
+                lmgr:
+                  children:
+                    lmgr_1:
+                      hosts:
+                        ct5swlm1:
+                          ansible_host: 10.117.0.8
+                          ansible_user: skytap
+                          ansible_password: ChangeMe!
+                    lmgr_2:
+                      hosts:
+                        ct5swlm2:
+                          ansible_host: 10.117.0.9
+                          ansible_user: skytap
+                          ansible_password: ChangeMe!
+                    lmgr_3:
+                      hosts:
+                        ct5swlm3:
+                          ansible_host: 10.117.0.10
+                          ansible_user: skytap
+                          ansible_password: ChangeMe!
+                    lmgr_4:
+                      hosts:
+                        ct5swlm4:
+                          ansible_host: 10.117.0.27
+                          ansible_user: skytap
+                          ansible_password: ChangeMe!
+                maps:
+                  children:
+                    maps_1:
+                      hosts:
+                        ct5trf1:
+                          ansible_host: 10.117.0.14
+                          ansible_user: skytap
+                          ansible_password: ChangeMe!
+                    maps_2:
+                      hosts:
+                        ct5trf2:
+                          ansible_host: 10.117.0.15
+                          ansible_user: skytap
+                          ansible_password: ChangeMe!
+                    maps_3:
+                      hosts:
+                        ct5trf3:
+                          ansible_host: 10.117.0.16
+                          ansible_user: skytap
+                          ansible_password: ChangeMe!
+                    maps_4:
+                      hosts:
+                        ct5trf4:
+                          ansible_host: 10.117.0.17
+                          ansible_user: skytap
+                          ansible_password: ChangeMe!
+                mapsrabbitmq:
+                  children:
+                    mapsrabbitmq_1:
+                      hosts:
+                        ct5mapm1:
+                          ansible_host: 10.117.0.38
+                          ansible_user: skytap
+                          ansible_password: ChangeMe!
+                    mapsrabbitmq_2:
+                      hosts:
+                        ct5mapm2:
+                          ansible_host: 10.117.0.39
+                          ansible_user: skytap
+                          ansible_password: ChangeMe!
+                    mapsrabbitmq_3:
+                      hosts:
+                        ct5mapm3:
+                          ansible_host: 10.117.0.40
+                          ansible_user: skytap
+                          ansible_password: ChangeMe!
+                    mapsrabbitmq_4:
+                      hosts:
+                        ct5mapm4:
+                          ansible_host: 10.117.0.37
+                          ansible_user: skytap
+                          ansible_password: ChangeMe!
+                msim:
+                  children:
+                    msim_1:
+                      hosts:
+                        ct5msim1:
+                          ansible_host: 10.117.0.21
+                          ansible_user: skytap
+                          ansible_password: ChangeMe!
+                    msim_2:
+                      hosts:
+                        ct5msim2:
+                          ansible_host: 10.117.0.2
+                          ansible_user: skytap
+                          ansible_password: ChangeMe!
+                    msim_3:
+                    msim_4:
+                msimgui:
+                msimgui_tomcat:
+                  children:
+                    msimgui_1:
+                      hosts:
+                        ct5msim1:
+                          ansible_host: 10.117.0.21
+                          ansible_user: skytap
+                          ansible_password: ChangeMe!
+                    msimgui_2:
+                      hosts:
+                        ct5msim2:
+                          ansible_host: 10.117.0.2
+                          ansible_user: skytap
+                          ansible_password: ChangeMe!
+                mq:
+                  children:
+                    bankmq:
+                    swmq:
+                ndm:
+                  children:
+                    ndm_1:
+                      hosts:
+                        ct5wndm1:
+                          ansible_host: 10.117.0.3
+                          ansible_user: skytap
+                          ansible_password: ChangeMe!
+                opsui:
+                  children:
+                    opsui_1:
+                      hosts:
+                        ct5ui1:
+                          ansible_host: 10.117.0.30
+                          ansible_user: skytap
+                          ansible_password: ChangeMe!
+                    opsui_2:
+                      hosts:
+                        ct5ui2:
+                          ansible_host: 10.117.0.31
+                          ansible_user: skytap
+                          ansible_password: ChangeMe!
+                switch:
+                  children:
+                    switch_1:
+                      hosts:
+                        ct5swlm1:
+                          ansible_host: 10.117.0.8
+                          ansible_user: skytap
+                          ansible_password: ChangeMe!
+                    switch_2:
+                      hosts:
+                        ct5swlm2:
+                          ansible_host: 10.117.0.9
+                          ansible_user: skytap
+                          ansible_password: ChangeMe!
+                    switch_3:
+                      hosts:
+                        ct5swlm3:
+                          ansible_host: 10.117.0.10
+                          ansible_user: skytap
+                          ansible_password: ChangeMe!
+                    switch_4:
+                      hosts:
+                        ct5swlm4:
+                          ansible_host: 10.117.0.27
+                          ansible_user: skytap
+                          ansible_password: ChangeMe!
+                swmq:
+                  children:
+                    swmq_1:
+                      hosts:
+                        ct5mq1:
+                          ansible_host: 10.117.0.19
+                          ansible_user: skytap
+                          ansible_password: ChangeMe!
+                    swmq_2:
+                      hosts:
+                        ct5mq2:
+                          ansible_host: 10.117.0.35
+                          ansible_user: skytap
+                          ansible_password: ChangeMe!
+                    swmq_combined:
+                swrabbitmq:
+                  children:
+                    swrabbitmq_1:
+                      hosts:
+                        ct5ramq1:
+                          ansible_host: 10.117.0.4
+                          ansible_user: skytap
+                          ansible_password: ChangeMe!
+                    swrabbitmq_2:
+                      hosts:
+                        ct5ramq2:
+                          ansible_host: 10.117.0.1
+                          ansible_user: skytap
+                          ansible_password: ChangeMe!
+                    swrabbitmq_3:
+                      hosts:
+                        ct5ramq3:
+                          ansible_host: 10.117.0.28
+                          ansible_user: skytap
+                          ansible_password: ChangeMe!
+                    swrabbitmq_4:
+                      hosts:
+                        ct5ramq4:
+                          ansible_host: 10.117.0.29
+                          ansible_user: skytap
+                          ansible_password: ChangeMe!
+                transformer:
+                  children:
+                    transformer_msim:
+                      hosts:
+                    transformer_1:
+                      hosts:
+                        ct5trf1:
+                          ansible_host: 10.117.0.14
+                          ansible_user: skytap
+                          ansible_password: ChangeMe!
+                    transformer_2:
+                      hosts:
+                        ct5trf2:
+                          ansible_host: 10.117.0.15
+                          ansible_user: skytap
+                          ansible_password: ChangeMe!
+                    transformer_3:
+                      hosts:
+                        ct5trf3:
+                          ansible_host: 10.117.0.16
+                          ansible_user: skytap
+                          ansible_password: ChangeMe!
+                    transformer_4:
+                      hosts:
+                        ct5trf4:
+                          ansible_host: 10.117.0.17
+                          ansible_user: skytap
+                          ansible_password: ChangeMe!
+                websphere:
+                  children:
+                    comp2:
+                    msimgui:
+                    opsui:
+                    transformer:
+        files_database:
+          children:
+            database:
+              children:
+                analyticaldb:
+                  children:
+                    analyticaldb_1:
+                      hosts:
+                        ct5db2dw1:
+                          ansible_host: 10.117.0.36
+                          ansible_user: skytap
+                          ansible_password: ChangeMe!
+                transactiondb:
+                  children:
+                    transactiondb_1:
+                      hosts:
+                        ct5db2tr1:
+                          ansible_host: 10.117.0.18
+                          ansible_user: skytap
+                          ansible_password: ChangeMe!

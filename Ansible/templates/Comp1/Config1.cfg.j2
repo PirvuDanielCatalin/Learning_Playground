@@ -1,0 +1,36 @@
+{ifports,
+ [{% for connection in conns_list_filtered %}
+  {% if connection.owning_entity_id in participants_list_filtered %}
+    {% set entity_name = participants_list_filtered[connection.owning_entity_id].name %}
+  {% else %}
+    {% if connection.tpsp_name != None %}
+        {% set entity_name = connection.tpsp_name %}
+    {% else %}
+        {% set entity_name = connection.owning_entity_id %}
+    {% endif %}
+  {% endif %}
+
+  {"{{ connection.id }}", "Connection for {{ entity_name }}", mq,
+    {msg_handler, msg_handler_base_iso20022},
+    {config,[{'MQ1',[
+                     {in_qmgr,"{{ connection.site_1.mq_name }}"},
+                     {in_connection,"{{ connection.site_1.mq_host }}({{ connection.site_1.mq_port }})"},
+                     {in_channel,"BANK.APP.SVRCONN"},
+             {'MQ2',[
+                     {in_qmgr,"{{ connection.site_1.mq_name }}"},
+                     {in_connection,"{{ connection.site_1.mq_host }}({{ connection.site_1.mq_port }})"},
+                     {in_channel,"BANK.APP.SVRCONN"},
+             {'MQ3',[
+                     {in_qmgr,"{{ connection.site_2.mq_name }}"},
+                     {in_connection,"{{ connection.site_2.mq_host }}({{ connection.site_2.mq_port }})"},
+                     {in_channel,"BANK.APP.SVRCONN"},
+
+             {'MQ4',[
+                     {in_qmgr,"{{ connection.site_2.mq_name }}"},
+                     {in_connection,"{{ connection.site_2.mq_host }}({{ connection.site_2.mq_port }})"},
+                     {in_channel,"BANK.APP.SVRCONN"},
+            ]}
+   ],
+   { {{ connection.message_format | default('iso20022_tch') }},{{ connection.message_set_version | default(1) }} },
+   "{{ connection.owning_entity_id }}"}{{ ',' if not loop.last else '' }}
+ {% endfor %}]}.

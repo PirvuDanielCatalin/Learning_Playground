@@ -1,0 +1,14 @@
+---
+- name: Debug ansible_play_hosts_all
+  debug:
+    var: ansible_play_hosts_all
+
+- name: Debug ansible_play_batch
+  debug:
+    var: ansible_play_batch
+
+- name: Make sure all host are marked as failed
+  fail:
+    msg: "The hosts that failed are: {{ ansible_play_hosts_all| difference(ansible_play_batch) |join('\n') }}
+          For the error cause look above for the failed task."
+  when: "ansible_play_hosts_all | difference(ansible_play_batch) | length > 0"

@@ -1,0 +1,10 @@
+---
+- name: Playing with Ansible
+  hosts: "{{ item }}"
+  gather_facts: false
+  tasks:
+    - name: PrintOutput
+      include_tasks: tasks/PrintOutput.yml
+  loop:
+    - node1
+    - node2

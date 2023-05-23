@@ -1,0 +1,6 @@
+---
+variabila_externa: DEF
+
+# var_list: [5, 6]
+var_list: []
+var_list_v2: [7, 8]

@@ -1,0 +1,232 @@
+# conns_list has an implicit link to ips_participants, as there is an expectation that either the connection's
+# owning_entity_id or tpsp_name is present in the ips_participants list per the below link
+# https://ie-github.vocalink.co.uk/vocalink/ips-tch-switch/blob/develop/src/main/ansible/roles/ips-Comp1-configure/templates/ifport-connection.cfg.j2
+variabila_conditionata: "{{ 'Pereche1' if 'pereche_1' is in group_names
+  else 'Pereche2' if 'pereche_2' is in group_names 
+  else 'Pereche3' if 'pereche_3' is in group_names }}"
+
+ips_comp1_config_files:
+  - file: templates/Comp1/Config1.cfg.j2
+    dest: "/tmp/Config1.cfg"
+
+  - file: templates/Comp1/Config2.cfg.j2
+    dest: "/tmp/Config2.cfg"
+
+  - file: templates/Comp1/Config3.cfg.j2
+    dest: "/tmp/Config3.cfg"
+
+  - file: templates/Comp1/Config4.cfg.j2
+    dest: "/tmp/Config4.cfg"
+
+conns_list:
+  - id: "000000090A101"
+    message_format: "iso20022_tch"
+    message_set_version: "2"
+    short_id: "090A101"
+    owning_entity_id: "000000090A1"
+    tpsp_name: "000000090A101"
+    site_1:
+      mq_name: 000000090A101_MQ1
+      mq_host: ""
+      mq_port: 1684
+    site_2:
+      mq_name: 000000090A101_MQ2
+      mq_host: ""
+      mq_port: 1684
+
+  - id: "000000089A101"
+    message_format: "iso20022_tch"
+    message_set_version: "2"
+    short_id: "089A101"
+    owning_entity_id: "000000089A1"
+    tpsp_name: "000000089A101"
+    site_1:
+      mq_name: 000000089A101_MQ1
+      mq_host: ""
+      mq_port: 1682
+    site_2:
+      mq_name: 000000089A101_MQ2
+      mq_host: ""
+      mq_port: 1682
+
+  - id: "000000087A101"
+    message_format: "iso20022_tch"
+    message_set_version: "2"
+    short_id: "087A101"
+    owning_entity_id: "TPSPID087A1"
+    tpsp_name: "BIGTPSP087"
+    site_1:
+      mq_name: 000000087A101_MQ1
+      mq_host: ""
+      mq_port: 1678
+    site_2:
+      mq_name: 000000087A101_MQ2
+      mq_host: ""
+      mq_port: 1678
+
+  - id: "000000086A101"
+    message_format: "iso20022_tch"
+    message_set_version: "2"
+    short_id: "086A101"
+    owning_entity_id: "TPSPID086A1"
+    tpsp_name: "TPSP086"
+    site_1:
+      mq_name: 000000086A101_MQ1
+      mq_host: ""
+      mq_port: 1676
+    site_2:
+      mq_name: 000000086A101_MQ2
+      mq_host: ""
+      mq_port: 1676
+
+  - id: "000000083A101"
+    message_format: "iso20022_tch"
+    message_set_version: "2"
+    short_id: "083A101"
+    owning_entity_id: "TPSPID083A1"
+    tpsp_name: "TPSP083"
+    site_1:
+      mq_name: 000000083A101_MQ1
+      mq_host: ""
+      mq_port: 1670
+    site_2:
+      mq_name: 000000083A101_MQ2
+      mq_host: ""
+      mq_port: 1670
+
+participants_list:
+  000000089A1:
+    name: "PARTDIRECT89"
+    default_connection: "000000089A101"
+    extra_connections: []
+    routing_numbers:
+      '89ROUTE01':
+        tokenized_flag: "false"
+      '89ROUTE02':
+        tokenized_flag: "false"
+      '89ROUTE03':
+        tokenized_flag: "false"
+      '89ROUTE04':
+        tokenized_flag: "false"
+      '89ROUTE05':
+        tokenized_flag: "false"
+
+  000000090A1:
+    name: "PARTDIRECT90"
+    default_connection: "000000090A101"
+    extra_connections: []
+    routing_numbers:
+      '90ROUTE01':
+        tokenized_flag: "false"
+      '90ROUTE02':
+        tokenized_flag: "false"
+      '90ROUTE03':
+        tokenized_flag: "false"
+      '90ROUTE04':
+        tokenized_flag: "false"
+      '90ROUTE05':
+        tokenized_flag: "false"
+
+  000001005A1:
+    name: "PART105"
+    default_connection: "000000087A101"
+    extra_connections: []
+    routing_numbers:
+      '105ROUT81':
+        tokenized_flag: "false"
+      '105ROUT82':
+        tokenized_flag: "false"
+
+  000001006A1:
+    name: "PART106"
+    default_connection: "000000087A101"
+    extra_connections: []
+    routing_numbers:
+      '106ROUT01':
+        tokenized_flag: "false"
+      '106ROUT02':
+        tokenized_flag: "false"
+
+  000001007A1:
+    name: "PART107"
+    default_connection: "000000087A101"
+    extra_connections: []
+    routing_numbers:
+      '107ROUT01':
+        tokenized_flag: "false"
+      '107ROUT02':
+        tokenized_flag: "false"
+
+  000001008A1:
+    name: "PART108"
+    default_connection: "000000087A101"
+    extra_connections: []
+    routing_numbers:
+      '108ROUT01':
+        tokenized_flag: "false"
+      '108ROUT02':
+        tokenized_flag: "false"
+
+  000002009A1:
+    name: "PART1109"
+    default_connection: "000000087A101"
+    extra_connections: []
+    routing_numbers:
+      '1105ROU01':
+        tokenized_flag: "false"
+
+  000002010A1:
+    name: "PART1110"
+    default_connection: "000000087A101"
+    extra_connections: []
+    routing_numbers:
+      '1106ROU01':
+        tokenized_flag: "false"
+
+  000002011A1:
+    name: "PART1111"
+    default_connection: "000000087A101"
+    extra_connections: []
+    routing_numbers:
+      '1107ROU01':
+        tokenized_flag: "false"
+
+  000002012A1:
+    name: "PART1112"
+    default_connection: "000000087A101"
+    extra_connections: []
+    routing_numbers:
+      '1108ROU01':
+        tokenized_flag: "false"
+
+  000002013A1:
+    name: "PART1113"
+    default_connection: "000000086A101"
+    extra_connections: []
+    routing_numbers:
+      '1109ROU01':
+        tokenized_flag: "false"
+
+  000002014A1:
+    name: "PART1114"
+    default_connection: "000000086A101"
+    extra_connections: []
+    routing_numbers:
+      '1110ROU01':
+        tokenized_flag: "false"
+
+  000002015A1:
+    name: "PART1115"
+    default_connection: "000000083A101"
+    extra_connections: []
+    routing_numbers:
+      '1111ROU01':
+        tokenized_flag: "false"
+
+  000002016A1:
+    name: "PART1116"
+    default_connection: "000000083A101"
+    extra_connections: []
+    routing_numbers:
+      '1112ROU01':
+        tokenized_flag: "false"

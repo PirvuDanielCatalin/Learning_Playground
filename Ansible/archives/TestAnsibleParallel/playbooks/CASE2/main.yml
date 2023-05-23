@@ -1,0 +1,26 @@
+---
+- name: Free Success 
+  hosts: simulation_of_mq_nodes:simulation_of_rabbitmq_nodes:simulation_of_db_nodes
+  strategy: free
+  tasks:
+  - block:
+      - name: DB Install
+        include_role: 
+          name: ../../roles/simulation_of_db_with_success
+        when: inventory_hostname in groups["simulation_of_db_nodes"]
+
+      - name: MQ Install
+        include_role: 
+          name: ../../roles/simulation_of_mq_with_success
+        when: 
+          inventory_hostname in groups["simulation_of_mq_nodes"] or 
+          inventory_hostname in groups["simulation_of_rabbitmq_nodes"]
+
+      - name: Check
+        include_role: 
+          name: ../../roles/check_and_mark_role
+
+      - name: After all hosts are checked
+        shell: 
+          cmd: |
+            echo "I should not get to this if any host fails"

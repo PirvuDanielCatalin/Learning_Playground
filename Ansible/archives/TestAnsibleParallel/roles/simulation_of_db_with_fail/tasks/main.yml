@@ -1,0 +1,6 @@
+---
+- name: DB Fail
+  shell:
+    cmd: |
+      sleep 20
+      /bin/false

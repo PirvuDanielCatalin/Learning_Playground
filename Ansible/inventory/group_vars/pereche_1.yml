@@ -1,0 +1,3 @@
+---
+conns_list_filtered: "{{ conns_list | selectattr('id', 'match', '0+(89|87)') | list }}"
+participants_list_filtered: "{{ participants_list | dict2items | selectattr('value.default_connection', 'match', '0+(89|87)') | list | items2dict }}"

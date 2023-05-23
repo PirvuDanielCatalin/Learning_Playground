@@ -1,0 +1,5 @@
+---
+- name: MQ Success
+  shell:
+    cmd: |
+      sleep 3

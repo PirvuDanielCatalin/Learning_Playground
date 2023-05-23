@@ -1,0 +1,22 @@
+---
+- name: Check variable exists and it's not empty
+  hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: Task1
+      debug:
+        msg: "ABC"
+      tags:
+        - always
+
+    - name: Task2
+      debug:
+        msg: "==> 111 <=="
+      tags:
+        - task1
+
+    - name: Task3
+      debug:
+        msg: "==> 222 <=="
+      tags:
+        - task2

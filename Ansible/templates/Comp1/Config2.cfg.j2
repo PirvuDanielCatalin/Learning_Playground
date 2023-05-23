@@ -1,0 +1,14 @@
+%% -*- erlang -*- vim:se ft=erlang:
+%% List of participants
+{participants_cap,
+  [{% for id, details in participants_list_filtered.items() %}
+   {% set all_cons = [details.default_connection] + details.extra_connections %}
+   {"{{ id }}",                                                                          %% Id
+    [{{ details.accounts | default('') }}],                                              %% Accounts
+    [{{ details.tracking_accounts | default('') }}],                                     %% Tracking Accounts
+    [{{ details.service_profile_id | default('') }}],   %% Profile ID
+    ["{{ all_cons | join(", ") }}"],                                                     %% Allowed connections
+    1
+   }{{ ',' if not loop.last else '' }}
+{% endfor %}]
+}.

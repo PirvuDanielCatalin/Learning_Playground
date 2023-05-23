@@ -1,0 +1,17 @@
+---
+- name: Map variables
+  hosts: node_db
+  gather_facts: false
+  vars:
+    mq_configures_1: "{{ conns_list | map(attribute='site_1') }}"
+    mq_configures_2: "{{ conns_list | map(attribute='site_2') }}"
+    bank_mqs_1: "{{ conns_list | map('combine', {'site_number': 1}) | list }}"
+  tasks:
+    - name: Debug
+      debug:
+        var: "{{ item }}"
+      loop:
+        - mq_configures_1
+        - mq_configures_2
+        - bank_mqs_1
+        

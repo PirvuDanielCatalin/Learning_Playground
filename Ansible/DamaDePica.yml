@@ -1,0 +1,19 @@
+---
+- name: Conditionals at variables
+  hosts: aws
+  gather_facts: false
+  tasks:
+    - name: List packages
+      shell: 
+        cmd: |
+          echo AA BB CC \
+            A1 B1 C1 \
+            A2 B2 C2 \
+            "AA{{ varib | default([1]) | join(' ') if 'pereche_1' in group_names 
+              else varib | default([2]) | join(' ') if 'pereche_2' in group_names 
+              else [3] | join(' ') }}BB"
+      register: result
+
+    - name: Debug
+      debug:
+        var: result.stdout_lines

@@ -1,0 +1,8 @@
+---
+# Paths for tmp, rpm & maps
+rpm_dir: "/tmp/rpms"
+rpm_source: "/localdir/rpms"
+
+# App component version
+ips_comp1_rpm: comp1-v1.2.3-el7.rpm
+ips_comp2_rpm: comp2-v1.5.6-el7.rpm

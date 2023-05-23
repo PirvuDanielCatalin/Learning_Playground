@@ -1,0 +1,16 @@
+---
+- name: Check variable bool
+  hosts: localhost
+  gather_facts: false
+  vars:
+    varib: ""
+  tasks:
+    - name: Debug 1
+      debug:
+        msg: "{{ varib }}"
+      when: varib is defined and varib | bool == true
+
+    - name: Debug 2
+      debug:
+        msg: "{{ lookup('env', 'aws_ips_config_file') | default('ABC', true) }}"
+        
