@@ -11,8 +11,8 @@
     #   debug:
     #     msg: "{{ participants_list_filtered }}"
 
-    - name: Copy comp1 config files to lib directory
+    - name: Copy backoffice config files to lib directory
       template:
         src: "{{ item.file }}"
         dest: "{{ item.dest }}"
-      loop: "{{ ips_comp1_config_files | flatten(levels=1) }}"
+      loop: "{{ ips_backoffice_config_files | flatten(levels=1) }}"

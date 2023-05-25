@@ -1,21 +1,20 @@
-# conns_list has an implicit link to ips_participants, as there is an expectation that either the connection's
-# owning_entity_id or tpsp_name is present in the ips_participants list per the below link
-# https://ie-github.vocalink.co.uk/vocalink/ips-tch-switch/blob/develop/src/main/ansible/roles/ips-Comp1-configure/templates/ifport-connection.cfg.j2
-variabila_conditionata: "{{ 'Pereche1' if 'pereche_1' is in group_names
-  else 'Pereche2' if 'pereche_2' is in group_names 
-  else 'Pereche3' if 'pereche_3' is in group_names }}"
+---
+variabila_conditionata: "{{
+  'Pereche1' if 'pereche_1' is in group_names else
+  'Pereche2' if 'pereche_2' is in group_names else
+  'Pereche3' if 'pereche_3' is in group_names }}"
 
-ips_comp1_config_files:
-  - file: templates/Comp1/Config1.cfg.j2
+ips_backoffice_config_files:
+  - file: templates/backoffice/Config1.cfg.j2
     dest: "/tmp/Config1.cfg"
 
-  - file: templates/Comp1/Config2.cfg.j2
+  - file: templates/backoffice/Config2.cfg.j2
     dest: "/tmp/Config2.cfg"
 
-  - file: templates/Comp1/Config3.cfg.j2
+  - file: templates/backoffice/Config3.cfg.j2
     dest: "/tmp/Config3.cfg"
 
-  - file: templates/Comp1/Config4.cfg.j2
+  - file: templates/backoffice/Config4.cfg.j2
     dest: "/tmp/Config4.cfg"
 
 conns_list:
@@ -100,15 +99,15 @@ participants_list:
     default_connection: "000000089A101"
     extra_connections: []
     routing_numbers:
-      '89ROUTE01':
+      "89ROUTE01":
         tokenized_flag: "false"
-      '89ROUTE02':
+      "89ROUTE02":
         tokenized_flag: "false"
-      '89ROUTE03':
+      "89ROUTE03":
         tokenized_flag: "false"
-      '89ROUTE04':
+      "89ROUTE04":
         tokenized_flag: "false"
-      '89ROUTE05':
+      "89ROUTE05":
         tokenized_flag: "false"
 
   000000090A1:
@@ -116,15 +115,15 @@ participants_list:
     default_connection: "000000090A101"
     extra_connections: []
     routing_numbers:
-      '90ROUTE01':
+      "90ROUTE01":
         tokenized_flag: "false"
-      '90ROUTE02':
+      "90ROUTE02":
         tokenized_flag: "false"
-      '90ROUTE03':
+      "90ROUTE03":
         tokenized_flag: "false"
-      '90ROUTE04':
+      "90ROUTE04":
         tokenized_flag: "false"
-      '90ROUTE05':
+      "90ROUTE05":
         tokenized_flag: "false"
 
   000001005A1:
@@ -132,9 +131,9 @@ participants_list:
     default_connection: "000000087A101"
     extra_connections: []
     routing_numbers:
-      '105ROUT81':
+      "105ROUT81":
         tokenized_flag: "false"
-      '105ROUT82':
+      "105ROUT82":
         tokenized_flag: "false"
 
   000001006A1:
@@ -142,9 +141,9 @@ participants_list:
     default_connection: "000000087A101"
     extra_connections: []
     routing_numbers:
-      '106ROUT01':
+      "106ROUT01":
         tokenized_flag: "false"
-      '106ROUT02':
+      "106ROUT02":
         tokenized_flag: "false"
 
   000001007A1:
@@ -152,9 +151,9 @@ participants_list:
     default_connection: "000000087A101"
     extra_connections: []
     routing_numbers:
-      '107ROUT01':
+      "107ROUT01":
         tokenized_flag: "false"
-      '107ROUT02':
+      "107ROUT02":
         tokenized_flag: "false"
 
   000001008A1:
@@ -162,9 +161,9 @@ participants_list:
     default_connection: "000000087A101"
     extra_connections: []
     routing_numbers:
-      '108ROUT01':
+      "108ROUT01":
         tokenized_flag: "false"
-      '108ROUT02':
+      "108ROUT02":
         tokenized_flag: "false"
 
   000002009A1:
@@ -172,7 +171,7 @@ participants_list:
     default_connection: "000000087A101"
     extra_connections: []
     routing_numbers:
-      '1105ROU01':
+      "1105ROU01":
         tokenized_flag: "false"
 
   000002010A1:
@@ -180,7 +179,7 @@ participants_list:
     default_connection: "000000087A101"
     extra_connections: []
     routing_numbers:
-      '1106ROU01':
+      "1106ROU01":
         tokenized_flag: "false"
 
   000002011A1:
@@ -188,7 +187,7 @@ participants_list:
     default_connection: "000000087A101"
     extra_connections: []
     routing_numbers:
-      '1107ROU01':
+      "1107ROU01":
         tokenized_flag: "false"
 
   000002012A1:
@@ -196,7 +195,7 @@ participants_list:
     default_connection: "000000087A101"
     extra_connections: []
     routing_numbers:
-      '1108ROU01':
+      "1108ROU01":
         tokenized_flag: "false"
 
   000002013A1:
@@ -204,7 +203,7 @@ participants_list:
     default_connection: "000000086A101"
     extra_connections: []
     routing_numbers:
-      '1109ROU01':
+      "1109ROU01":
         tokenized_flag: "false"
 
   000002014A1:
@@ -212,7 +211,7 @@ participants_list:
     default_connection: "000000086A101"
     extra_connections: []
     routing_numbers:
-      '1110ROU01':
+      "1110ROU01":
         tokenized_flag: "false"
 
   000002015A1:
@@ -220,7 +219,7 @@ participants_list:
     default_connection: "000000083A101"
     extra_connections: []
     routing_numbers:
-      '1111ROU01':
+      "1111ROU01":
         tokenized_flag: "false"
 
   000002016A1:
@@ -228,5 +227,5 @@ participants_list:
     default_connection: "000000083A101"
     extra_connections: []
     routing_numbers:
-      '1112ROU01':
+      "1112ROU01":
         tokenized_flag: "false"
