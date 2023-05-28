@@ -1,11 +1,10 @@
 ---
-
-- name: Task din exterior 1
+- name: Task din exterior A
   import_playbook: AsDeInima.yml
   vars:
     hosts: "node1:node2"
 
-- name: Task din exterior 2
+- name: Task din exterior B
   import_playbook: AsDeInima.yml
   vars:
     hosts: "node3:node4"

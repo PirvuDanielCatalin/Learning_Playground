@@ -10,12 +10,12 @@
       include_tasks: tasks/ReadYMLFile.yml
 
 - name: Playing with Ansible
-  hosts: node1
+  hosts: backoffice
   gather_facts: false
   tasks:
-    - name: Debug
+    - name: Debug RPM var
       debug:
-        var: ips_comp_rpm
+        var: ips_backoffice_rpm
 
     - name: Ensure directories exist
       file:
@@ -24,40 +24,31 @@
 
     - name: Copy RPM to host
       copy:
-        src: '{{ rpm_source }}/{{ ips_maps_rpm }}'
-        dest: '{{ rpm_dir }}/{{ ips_maps_rpm }}'
+        src: "{{ rpm_source }}/{{ ips_backoffice_rpm }}"
+        dest: "{{ rpm_dir }}/{{ ips_backoffice_rpm }}"
 
-    - name: List packages
+    - name: List packages BEFORE
       shell:
         cmd: |
-          rpm -qa | grep message-acquisition-tch
+          rpm -qa | grep 'backoffice'
       register: result
 
-    - name: Debug
+    - name: Debug BEFORE
       debug:
         var: result
 
-    # - name: List packages
-    #   yum:
-    #     list: message-acquisition-tch
-    #   register: result
-
-    # - name: Debug
-    #   debug:
-    #     var: result
-
     - name: RPM install
       yum:
-        name: '{{ rpm_dir }}/{{ ips_maps_rpm }}'
+        name: "{{ rpm_dir }}/{{ ips_backoffice_rpm }}"
         state: present
         disable_gpg_check: yes
 
-    - name: List packages
+    - name: List packages AFTER
       shell:
         cmd: |
-          rpm -qa | grep message-acquisition-tch
+          rpm -qa | grep 'backoffice'
       register: result
 
-    - name: Debug
+    - name: Debug AFTER
       debug:
         var: result

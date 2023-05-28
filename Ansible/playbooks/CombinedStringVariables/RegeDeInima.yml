@@ -1,10 +1,10 @@
 ---
 - name: Combined name of vars
-  hosts: comp2
+  hosts: full
   gather_facts: false
   vars:
-    varib1: '111'
-    varib2: '222'
+    varib1: "111"
+    varib2: "222"
     ceva_1: "AAA"
     ceva_2: "BBB"
   tasks:
@@ -18,4 +18,6 @@
 
     - name: Var Cond
       debug:
-        msg: "{{ '1' if 'comp2_1' is in group_names else '2' if 'comp2_2' is in group_names else '3' }}"
+        msg: "{{  '1' if 'site_1' is in group_names else
+                  '2' if 'site_2' is in group_names else
+                  '3' }}"

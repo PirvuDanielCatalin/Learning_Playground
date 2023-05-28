@@ -1,7 +1,7 @@
 ---
 - name: Task din interior singular
   hosts: "{{ hosts | default('aws') }}"     # <== Putem specifica hostuiele in afara fisierului asta
-  # hosts: aws:&{{ hosts }}                 # <== Preia doar primul din lista
+  # hosts: full:&{{ hosts }}                 # <== Preia doar primul din lista
   gather_facts: false
   tasks:
     - name: PrintOutput
@@ -10,7 +10,7 @@
 
 - name: Task din interior debug variabil
   hosts: "{{ hosts | default('aws') }}"     # <== Putem specifica hostuiele in afara fisierului asta
-  # hosts: aws:&{{ hosts }}                 # <== Preia doar primul din lista
+  # hosts: full:&{{ hosts }}                 # <== Preia doar primul din lista
   gather_facts: false
   tasks:
     - name: DebugExternalVariable
