@@ -1,0 +1,17 @@
+---
+- name: Loop fancy
+  hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: Print values
+      debug:
+        msg: >
+          "Tot elementu {{ item.0 }} "
+          "Element din lista:"
+            "Server: {{ item.1.server }}"
+            "Nodename: {{ item.1.nodename }}"
+          "Ceva3: {{ item.0.ceva3 }}"
+      with_subelements:
+        - "{{ fancy_list_that_DOES_work }}"
+        - list
+        

@@ -1,0 +1,22 @@
+---
+fancy_list_that_DOES_work:
+- list:
+    - server: item1_element1_s
+      nodename: item1_element1_n
+    - server: item1_element2_s
+      nodename: item1_element2_n
+  ceva1: item1_ceva1
+  ceva2: item1_ceva2
+  ceva3: 
+    - A
+    - B
+    - C
+
+- list:
+    - server: item2_element1_s
+      nodename: item2_element1_n
+    - server: item2_element2_s
+      nodename: item2_element2_n
+  ceva1: item2_ceva1
+  ceva2: item2_ceva2
+  ceva3: []
