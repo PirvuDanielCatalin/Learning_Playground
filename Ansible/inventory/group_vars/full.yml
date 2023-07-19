@@ -1,21 +1,8 @@
 ---
 variabila_conditionata: "{{
-  'Pereche1' if 'pereche_1' is in group_names else
-  'Pereche2' if 'pereche_2' is in group_names else
-  'Pereche3' if 'pereche_3' is in group_names }}"
-
-ips_backoffice_config_files:
-  - file: templates/backoffice/Config1.cfg.j2
-    dest: "/tmp/Config1.cfg"
-
-  - file: templates/backoffice/Config2.cfg.j2
-    dest: "/tmp/Config2.cfg"
-
-  - file: templates/backoffice/Config3.cfg.j2
-    dest: "/tmp/Config3.cfg"
-
-  - file: templates/backoffice/Config4.cfg.j2
-    dest: "/tmp/Config4.cfg"
+  'Pereche1' if 'site_1' is in group_names else
+  'Pereche2' if 'site_2' is in group_names else
+  'Pereche3' if 'site_utils' is in group_names }}"
 
 conns_list:
   - id: "000000090A101"

@@ -1,6 +1,6 @@
 ---
 - name: Playing with Ansible
-  hosts: aws
+  hosts: full
   gather_facts: false
   tasks:
     - name: Debug

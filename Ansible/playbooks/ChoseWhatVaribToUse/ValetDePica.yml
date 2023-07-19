@@ -1,6 +1,6 @@
 ---
 - name: Check variable exists and it's not empty
-  hosts: pereche_1
+  hosts: site_1
   gather_facts: false
   tasks:
     - name: Debug

@@ -1,2 +1,15 @@
 ---
-variabila_y: TataLor
+variabila_externa: TataLor
+
+ips_backoffice_config_files:
+  - file: templates/backoffice/Config1.cfg.j2
+    dest: "/tmp/Config1.cfg"
+
+  - file: templates/backoffice/Config2.cfg.j2
+    dest: "/tmp/Config2.cfg"
+
+  - file: templates/backoffice/Config3.cfg.j2
+    dest: "/tmp/Config3.cfg"
+
+  - file: templates/backoffice/Config4.cfg.j2
+    dest: "/tmp/Config4.cfg"

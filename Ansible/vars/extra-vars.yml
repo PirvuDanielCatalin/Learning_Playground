@@ -5,4 +5,4 @@ rpm_source: "/localdir/rpms"
 
 # App component version
 ips_backoffice_rpm: backoffice-v1.2.3-el7.rpm
-ips_comp2_rpm: comp2-v1.5.6-el7.rpm
+ips_maps_rpm: maps-v1.5.6-el7.rpm

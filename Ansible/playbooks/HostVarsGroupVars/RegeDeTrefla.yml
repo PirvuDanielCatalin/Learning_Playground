@@ -1,0 +1,8 @@
+---
+- name: Group Vars vs Host Vars
+  hosts: backoffice
+  gather_facts: false
+  tasks:
+    - name: Debug
+      debug:
+        msg: "{{ variabila_externa if variabila_externavariabila_externa is defined else '888' }}"

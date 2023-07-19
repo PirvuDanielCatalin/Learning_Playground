@@ -1,0 +1,6 @@
+export AWS_DB=10.116.0.1
+export AWS_NODE1=10.116.0.2
+export AWS_NODE2=10.116.0.3
+export AWS_NODE3=10.116.0.4
+export AWS_NODE4=10.116.0.5
+export AWS_SIM=10.116.0.6

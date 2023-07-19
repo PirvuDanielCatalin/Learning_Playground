@@ -39,15 +39,29 @@ all:
           ansible_user: root
           ansible_ssh_private_key_file: "{{ lookup('env', 'HOME') + '/.ssh/id_rsa' }}"
           ansible_ssh_extra_args: "-o StrictHostKeyChecking=no"
-    pereche_1:
+    site_1:
       hosts:
         node1:
         node2:
-    pereche_2:
+    site_2:
       hosts:
         node3:
         node4:
-    pereche_3:
+    site_utils:
       hosts:
         node_db:
         node_sim:
+    backoffice:
+      hosts:
+        backoffice_1:
+          hosts:
+            node1:
+        backoffice_2:
+          hosts:
+            node2:
+        backoffice_3:
+          hosts:
+            node3:
+        backoffice_4:
+          hosts:
+            node4:

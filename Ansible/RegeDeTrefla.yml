@@ -1,8 +1,0 @@
----
-- name: Group Vars vs Host Vars
-  hosts: comp2
-  gather_facts: false
-  tasks:
-    - name: Debug
-      debug:
-        msg: "{{ variabila_y if variabila_y is defined else '888' }}"

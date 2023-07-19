@@ -1,15 +1,15 @@
 ---
 - name: Playing with Ansible
-  hosts: pereche_1:pereche_2
+  hosts: backoffice
   gather_facts: false
   tasks:
-    # - name: Debug connections
-    #   debug:
-    #     msg: "{{ conns_list_filtered }}"
+    - name: Debug connections
+      debug:
+        msg: "{{ conns_list_filtered }}"
 
-    # - name: Debug participants
-    #   debug:
-    #     msg: "{{ participants_list_filtered }}"
+    - name: Debug participants
+      debug:
+        msg: "{{ participants_list_filtered }}"
 
     - name: Copy backoffice config files to lib directory
       template:
