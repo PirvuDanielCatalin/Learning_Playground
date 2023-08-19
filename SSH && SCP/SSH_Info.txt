@@ -1,0 +1,22 @@
+# ======================================================================
+# Bastion
+# ======================================================================
+AWS Bastion: $BASTION_USER@$BASTION_PORT
+SSH / Auth:
+ - Optiunea "Allow agent forwarding" bifata
+ - Cheia privata incarcata ori in Putty ori in PAgent
+
+SSH / Tunnels:
+ - Source port: 8080
+ - Destination: localhost:8080
+# ======================================================================
+
+# ======================================================================
+# Platforma:   ${IP}   ${EXPOSED_PORT}
+# ======================================================================
+Pe bastion rulam comanda
+ssh centos@${IP}
+
+Pe bastion rulam comanda
+ssh -A centos@${IP} -L {EXPOSED_PORT}:localhost:{EXPOSED_PORT} -N
+# ======================================================================
