@@ -52,7 +52,7 @@ all:
         node_db:
         node_sim:
     backoffice:
-      hosts:
+      children:
         backoffice_1:
           hosts:
             node1:

@@ -9,4 +9,8 @@
 
     - name: Debug
       debug:
+        msg: "{{ group_names }}"
+
+    - name: Debug
+      debug:
         msg: "{{ variabila_conditionata }}"
