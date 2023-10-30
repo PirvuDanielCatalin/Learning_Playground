@@ -1,0 +1,17 @@
+- name: Copy entire directory on remote
+  hosts: msim
+  gather_facts: false
+  tasks:
+    - name: Ensure Ansible directories exist
+      file:
+        path: "{{ item }}"
+        state: directory
+        mode: 0755
+      loop:
+        - "/opt/ips/msim/ansible"
+        - "/opt/ips/msim/ansible/inventories"
+
+    - name: Copy dir
+      copy:
+        src: "../../inventory/group_vars/"
+        dest: "/opt/ips/msim/ansible/inventories/group_vars/"

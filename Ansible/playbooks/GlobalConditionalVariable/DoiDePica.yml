@@ -1,6 +1,6 @@
 ---
 - name: Playing with Ansible
-  hosts: full
+  hosts: msim
   gather_facts: false
   tasks:
     - name: Debug
@@ -11,6 +11,6 @@
       debug:
         msg: "{{ group_names }}"
 
-    - name: Debug
-      debug:
-        msg: "{{ variabila_conditionata }}"
+    # - name: Debug
+    #   debug:
+    #     msg: "{{ variabila_conditionata }}"
