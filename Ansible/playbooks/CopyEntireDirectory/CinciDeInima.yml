@@ -11,7 +11,12 @@
         - "/opt/ips/msim/ansible"
         - "/opt/ips/msim/ansible/inventories"
 
-    - name: Copy dir
+    - name: Copy group vars
       copy:
         src: "../../inventory/group_vars/"
         dest: "/opt/ips/msim/ansible/inventories/group_vars/"
+
+    - name: Copy host vars
+      copy:
+        src: "../../inventory/host_vars/"
+        dest: "/opt/ips/msim/ansible/inventories/host_vars/"
