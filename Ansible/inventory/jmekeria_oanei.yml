@@ -1,26 +1,26 @@
 all:
   hosts:
-    localhost
+    localhost:
   children:
     ips:
       hosts:
-        ips-node1:
-          ansible_host: 
+        node1:
+          ansible_host: "{{ lookup('env', 'AWS_NODE1') }}"
           ansible_user: root
-        ips-node2:
-          ansible_host: 
+        node2:
+          ansible_host: "{{ lookup('env', 'AWS_NODE2') }}"
           ansible_user: root
-        ips-node3:
-          ansible_host: 
+        node3:
+          ansible_host: "{{ lookup('env', 'AWS_NODE3') }}"
           ansible_user: root
-        ips-node4:
-          ansible_host: 
+        node4:
+          ansible_host: "{{ lookup('env', 'AWS_NODE4') }}"
           ansible_user: root
-        ips-database:
-          ansible_host: 
+        node_db:
+          ansible_host: "{{ lookup('env', 'AWS_DB') }}"
           ansible_user: root
-        ips-simulator:
-          ansible_host: 
+        node_sim:
+          ansible_host: "{{ lookup('env', 'AWS_SIM') }}"
           ansible_user: root
       children:
         monitoring:
@@ -40,143 +40,144 @@ all:
                   children:
                     switch_1:
                       hosts:
-                        ips-node1:
+                        node1:
                     switch_2:
                       hosts:
-                        ips-node2:
+                        node2:
                     switch_3:
                       hosts:
-                        ips-node3:
+                        node3:
                     switch_4:
                       hosts:
-                        ips-node4:
+                        node4:
                 lmgr:
                   children:
                     lmgr_1:
                       hosts:
-                        ips-node1:
+                        node1:
                     lmgr_2:
                       hosts:
-                        ips-node2:
+                        node2:
                     lmgr_3:
                       hosts:
-                        ips-node3:
+                        node3:
                     lmgr_4:
                       hosts:
-                        ips-node4:
+                        node4:
                 swrabbitmq:
                   children:
                     swrabbitmq_1:
                       hosts:
-                        ips-node1:
+                        node1:
                     swrabbitmq_2:
                       hosts:
-                        ips-node2:
+                        node2:
                     swrabbitmq_3:
                       hosts:
-                        ips-node3:
+                        node3:
                     swrabbitmq_4:
                       hosts:
-                        ips-node4:
+                        node4:
                 backoffice:
                   children:
                     backoffice_1:
                       hosts:
-                        ips-node1:
+                        node1:
                     backoffice_2:
                       hosts:
-                        ips-node3:
+                        node3:
                 maps:
                   children:
                     maps_1:
                       hosts:
-                        ips-node1:
+                        node1:
                     maps_2:
                       hosts:
-                        ips-node2:
+                        node2:
                     maps_3:
                       hosts:
                         ips_node3:
                     maps_4:
                       hosts:
-                        ips-node4:
+                        node4:
                 mapsrabbitmq:
                   children:
                     mapsrabbitmq_1:
                       hosts:
-                        ips-node1:
+                        node1:
                     mapsrabbitmq_2:
                       hosts:
-                        ips-node2:
+                        node2:
                     mapsrabbitmq_3:
                       hosts:
-                        ips-node3:
+                        node3:
                     mapsrabbitmq_4:
                       hosts:
-                        ips-node4:
+                        node4:
                 transformer:
                   children:
                     transformer_1:
                       hosts:
-                        ips-simulator:
+                        node_sim:
                 legacy_dsp:
                   children:
                     legacy_dsp_1:
                       hosts:
-                        ips-simulator:
+                        node_sim:
                 dsp:
                   children:
                     dsp_3:
-                        ips-node2:
+                      hosts:
+                        node2:
                     dsp_4:
                       hosts:
-                        ips-node4:
+                        node4:
                 msim:
                   children:
                     msim_1:
                       hosts:
-                        ips-simulator:
+                        node_sim:
                 swmq:
                   children:
                     swmq_1:
                       hosts:
-                        ips-node1:
+                        node1:
                     swmq_2:
                       hosts:
-                        ips-node3:
+                        node3:
                     swmq_combined:
                 bankmq:
                   children:
                     bankmq_1:
                       hosts:
-                        ips-node1:
+                        node1:
                     bankmq_2:
                       hosts:
-                        ips-node3:
+                        node3:
                     bankmq_combined:
                 borabbitmq:
                   children:
                     borabbitmq_1:
                       hosts:
-                        ips-database:
+                        node_db:
                 ldap:
                   children:
                     ldap_1:
                       hosts:
-                        ips-node1:
+                        node1:
                     ldap_2:
                       hosts:
-                        ips-node3:
+                        node3:
                 opsui:
                   children:
                     opsui_1:
                       hosts:
-                        ips-simulator:
+                        node_sim:
                 msimgui:
                   children:
                     msimgui_1:
                       hosts:
-                        ips_simulator:
+                        node_sim:
         files-database:
           children:
             database:
@@ -185,12 +186,12 @@ all:
                   children:
                     analyticaldb_1:
                       hosts:
-                          ips-database:
+                        node_db:
                 transactiondb:
                   children:
                     transactiondb_1:
                       hosts:
-                        ips-database:
+                        node_db:
     middleware-db2:
       children:
         database:
